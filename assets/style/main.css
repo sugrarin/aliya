@@ -1,0 +1,354 @@
+@font-face { 
+  font-family: 'Martian Grotesk';
+  src: url("/assets/fonts/MartianGrotesk-NrBl.woff2") format("woff2");
+  font-style: normal;
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: 'Hibana';
+  src: url("/assets/fonts/Hibana-45SubMedium.woff2") format("woff2");
+  font-style: normal;
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: 'Hikasami';
+  src: url("/assets/fonts/Hikasami-VF.woff2") format("woff2");
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --background-color: #111111;
+  --text-color: #ffffff;
+
+  --border-color: #444444;
+
+  --button-background-color: #222222;
+  --button-border-color: #222222;
+
+  --button-telegram-background-color: #152730;
+  --button-telegram-border-color: #2AABEE;
+
+  --button-whatsapp-background-color: #152317;
+  --button-whatsapp-border-color: #40C351;
+
+  --button-email-background-color: #282828;
+  --button-email-border-color: #EDEDED;
+
+  --black: #000000;
+  --white: #FFFFFF;
+  --red: #F50A0C;
+  --blue: #2D2DFE;
+  --yellow: #FCDF4D;
+  --orange: #EDA915;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  /* width: 100%; */
+  height: auto;
+}
+
+body {
+  margin: 0;
+  max-width: 1024px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: "Hikasami", sans-serif;
+  /* -webkit-font-smoothing: antialiased; */
+  font-weight: 420;
+}
+
+@media (min-width: 1025px) {
+  body {
+    margin: auto;
+  }
+}
+
+h1, h2, h3, strong {
+  font-family: "Martian Grotesk", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  text-transform: uppercase;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin: 100px 40px 40px;
+  gap: 20px;
+}
+
+.header-title {
+  font-size: 48px;
+  line-height: 120%;
+  margin-bottom: 14px;
+  letter-spacing: 1%;
+}
+
+.name {
+  color: #FF2B2B;
+}
+
+.header-text {
+  font-size: 19px;
+  line-height: 142%;
+  max-width: 520px;
+}
+
+.header-image {
+  max-width: 800px;
+
+}
+
+.contacts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 20px 20px 40px;
+}
+
+.contacts-button {
+  transition: transform 0.1s ease-out;
+  padding: 16%;
+  background-color: #222222;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.contacts-button img {
+  width: 64px;
+  height: 64px;
+}
+
+.contacts-button:hover {
+  transform: scale(1.03);
+}
+
+.contacts-button--telegram:hover {
+  background-color: var(--button-telegram-background-color);
+}
+
+.contacts-button--whatsapp:hover {
+  background-color: var(--button-whatsapp-background-color);
+}
+
+.contacts-button--email:hover {
+  background-color: var(--button-email-background-color);
+}
+
+section {
+  margin: 40px 20px;
+}
+
+.section-title {
+  font-size: 30px;
+  line-height: 108%;
+  letter-spacing: 2%;
+}
+
+p {
+  font-size: 20px;
+  line-height: 146%;
+  margin-bottom: 14px;
+  max-width: 680px;
+}
+
+.spacer-big {
+  height: 60px;
+  width: 100%;
+}
+
+.spacer-small {
+  height: 12px;
+  width: 100%;
+}
+
+.about,
+.lessons,
+.price {
+  padding: 44px 40px 40px;
+  background-color: #222222;
+  border-radius: 24px;
+}
+
+.about {
+  background-color: var(--white);
+  color: #000000;
+}
+
+.lessons {
+  background-color: var(--orange);
+  color: #000000;
+}
+
+.price {
+  background-color: var(--blue);
+}
+
+.price-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px 20px;
+}
+
+.group-title {
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+
+.group-text {
+  list-style: none;
+}
+
+.group-text li {
+  font-size: 18px;
+  margin: 3px 0;
+}
+
+.price-tag {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.links li {
+  list-style: none;
+  margin: 12px 0;
+}
+
+.links-block {
+  padding: 44px 40px 36px;
+  background-color: #222222;
+  border-radius: 24px;
+}
+
+.links-link {
+  font-size: 18px;
+  text-decoration: none;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.links-link:hover {
+  opacity: 0.8;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  margin: 28px 20px 16px;
+  line-height: 150%;
+}
+
+.footer-text {
+  font-size: 14px;
+  opacity: 0.4;
+}
+
+.div-404 {
+  margin: 80px 40px;
+}
+
+.button-404 {
+  display: inline-block;
+  margin: 16px 0;
+  padding: 16px 24px;
+  background-color: var(--white);
+  color: #000000;
+  border-radius: 12px;
+}
+
+@media (max-width: 928px) {
+  .header {
+    flex-direction: column-reverse;
+    margin: 20px 14px 12px;
+    gap: 24px;
+  }
+
+  .header-title {
+    font-size: 30px;
+    line-height: 128%;
+    margin-bottom: 8px;
+  }
+
+  .header-text {
+    font-size: 17px;
+  }
+
+  .contacts {
+    margin: 4px 14px 28px;
+  }
+
+  .contacts-button {
+      border-radius: 16px;
+  }
+
+  .contacts-button img {
+    width: 40px;
+    height: 40px;
+  }
+
+  section {
+    margin: 20px 14px;
+  }
+
+  .section-title {
+    font-size: 22px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  .about,
+  .lessons,
+  .price {
+    padding: 24px 16px 20px;
+      border-radius: 20px;
+  }
+
+  .spacer-big {
+    height: 36px;
+  }
+
+  .price-grid, .links {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .group-text li {
+    font-size: 14px;
+  }
+  .links-block {
+    padding: 24px 16px 20px;
+  }
+  .links-link {
+    font-size: 16px;
+  }
+  footer {
+      margin: 28px 14px 12px;
+  }
+  .footer-text {
+    font-size: 12px;
+  }
+}
