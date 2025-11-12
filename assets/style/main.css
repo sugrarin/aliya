@@ -276,6 +276,10 @@ footer {
   background-color: var(--white);
   color: #000000;
   border-radius: 12px;
+  font-family: "Martian Grotesk", sans-serif;
+  font-size: 20px;
+  text-transform: uppercase;
+  -webkit-font-smoothing: antialiased;
 }
 
 @media (max-width: 928px) {
