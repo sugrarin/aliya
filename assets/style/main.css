@@ -1,4 +1,4 @@
-@font-face { 
+@font-face {
   font-family: 'Martian Grotesk';
   src: url("/assets/fonts/MartianGrotesk-NrBl.woff2") format("woff2");
   font-style: normal;
@@ -57,7 +57,7 @@ a {
 
 img {
   display: block;
-  /* width: 100%; */
+  width: 100%;
   height: auto;
 }
 
@@ -77,12 +77,17 @@ body {
   }
 }
 
-h1, h2, h3, strong {
+h1,
+h2,
+h3,
+strong {
   font-family: "Martian Grotesk", sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   text-transform: uppercase;
 }
 
@@ -111,8 +116,7 @@ h1, h2, h3 {
 }
 
 .header-image {
-  max-width: 800px;
-
+  max-width: 600px;
 }
 
 .contacts {
@@ -304,7 +308,7 @@ footer {
   }
 
   .contacts-button {
-      border-radius: 16px;
+    border-radius: 16px;
   }
 
   .contacts-button img {
@@ -328,14 +332,15 @@ footer {
   .lessons,
   .price {
     padding: 24px 16px 20px;
-      border-radius: 20px;
+    border-radius: 20px;
   }
 
   .spacer-big {
     height: 36px;
   }
 
-  .price-grid, .links {
+  .price-grid,
+  .links {
     display: grid;
     grid-template-columns: 1fr;
   }
@@ -343,15 +348,19 @@ footer {
   .group-text li {
     font-size: 14px;
   }
+
   .links-block {
     padding: 24px 16px 20px;
   }
+
   .links-link {
     font-size: 16px;
   }
+
   footer {
-      margin: 28px 14px 12px;
+    margin: 28px 14px 12px;
   }
+
   .footer-text {
     font-size: 12px;
   }
