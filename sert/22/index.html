@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Сертификат — уроки китайского</title>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: #0f0305;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 20px;
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+/* ─── Background ─── */
+.bg {
+  position: fixed; inset: 0; z-index: 0; overflow: hidden;
+  background:
+    radial-gradient(ellipse 110% 90% at 18% 62%, rgba(108,8,8,.72) 0%, transparent 55%),
+    radial-gradient(ellipse 90% 80% at 83% 22%, rgba(62,5,45,.52) 0%, transparent 55%),
+    #0f0305;
+}
+.bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Crect x='3' y='3' width='54' height='54' fill='none' stroke='%23c8a030' stroke-width='.5' stroke-opacity='.10'/%3E%3Crect x='14' y='14' width='32' height='32' fill='none' stroke='%23c8a030' stroke-width='.35' stroke-opacity='.07'/%3E%3Ccircle cx='30' cy='30' r='1.8' fill='%23c8a030' fill-opacity='.07'/%3E%3Cline x1='0' y1='30' x2='14' y2='30' stroke='%23c8a030' stroke-width='.4' stroke-opacity='.06'/%3E%3Cline x1='46' y1='30' x2='60' y2='30' stroke='%23c8a030' stroke-width='.4' stroke-opacity='.06'/%3E%3Cline x1='30' y1='0' x2='30' y2='14' stroke='%23c8a030' stroke-width='.4' stroke-opacity='.06'/%3E%3Cline x1='30' y1='46' x2='30' y2='60' stroke='%23c8a030' stroke-width='.4' stroke-opacity='.06'/%3E%3C/svg%3E");
+}
+
+/* ─── Petals ─── */
+.petal {
+  position: fixed; z-index: 2; pointer-events: none;
+  animation: fall linear infinite;
+}
+@keyframes fall {
+  from { transform: translateY(-40px) rotate(0deg);   opacity: 0; }
+  8%   { opacity: .85; }
+  92%  { opacity: .6; }
+  to   { transform: translateY(108vh) rotate(540deg); opacity: 0; }
+}
+
+/* ─── Scene ─── */
+.scene {
+  position: relative; z-index: 10;
+  display: flex; flex-direction: column; align-items: center;
+  animation: enter 1.4s cubic-bezier(.2,1,.3,1) both;
+}
+@keyframes enter {
+  from { opacity: 0; transform: scale(.9) translateY(28px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ─── Lanterns ─── */
+.lanterns {
+  display: flex; justify-content: space-between;
+  width: 100%; max-width: 490px;
+  padding: 0 22px;
+  margin-bottom: -4px;
+  position: relative; z-index: 1;
+}
+.lantern-wrap {
+  transform-origin: 50% 0;
+  animation: sway 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 18px rgba(255,118,24,.56));
+}
+.lantern-wrap:nth-child(2) { animation-delay: -2s; }
+@keyframes sway {
+  0%,100% { transform: rotate(-5deg); }
+  50%      { transform: rotate(5deg); }
+}
+
+/* ─── Certificate ─── */
+.cert {
+  position: relative;
+  max-width: 490px; width: 100%;
+  background:
+    radial-gradient(ellipse 52% 38% at 28% 26%, rgba(255,252,228,.72) 0%, transparent 68%),
+    linear-gradient(155deg, #fdf8ed 0%, #f5e4a4 44%, #fdf4e2 72%, #f2e0a2 100%);
+  border: 2.5px solid #8b1a1a;
+  padding: 44px 40px 40px;
+  text-align: center;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 1px rgba(200,168,75,.2),
+    0 0 0 9px rgba(139,26,26,.07),
+    0 30px 74px rgba(0,0,0,.76),
+    inset 0 0 48px rgba(175,115,15,.05);
+}
+
+/* Inner gold border */
+.cert::before {
+  content: ''; position: absolute; inset: 10px;
+  border: 1px solid rgba(200,168,75,.46);
+  pointer-events: none; z-index: 1;
+}
+
+/* Watermark */
+.wm {
+  position: absolute; font-size: 188px; line-height: 1;
+  color: rgba(139,26,26,.036);
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  user-select: none; pointer-events: none; z-index: 0;
+  font-family: serif;
+}
+
+/* Corner brackets */
+.cnr {
+  position: absolute; width: 32px; height: 32px; z-index: 3;
+}
+.cnr.tl { top: 4px; left: 4px; }
+.cnr.tr { top: 4px; right: 4px;    transform: scaleX(-1); }
+.cnr.bl { bottom: 4px; left: 4px;  transform: scaleY(-1); }
+.cnr.br { bottom: 4px; right: 4px; transform: scale(-1,-1); }
+
+/* Inner content */
+.inner { position: relative; z-index: 2; }
+
+/* Ornament line */
+.orn { display: flex; align-items: center; gap: 8px; }
+.orn .ln {
+  flex: 1; height: 1px;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(200,168,75,.52) 22%,
+    rgba(139,26,26,.72) 50%,
+    rgba(200,168,75,.52) 78%,
+    transparent);
+}
+
+/* Red ribbon */
+.ribbon {
+  margin: 16px -40px 0;
+  padding: 13px 24px;
+  background: linear-gradient(180deg, #ab2020 0%, #8a1010 100%);
+  border-top: 1px solid rgba(200,168,75,.38);
+  border-bottom: 1px solid rgba(200,168,75,.38);
+}
+.ribbon-text {
+  color: #ffd978;
+  font-size: clamp(23px, 5.2vw, 32px);
+  font-weight: bold;
+  letter-spacing: clamp(2px, 1.1vw, 5px);
+  text-shadow: 0 1px 4px rgba(0,0,0,.42), 0 0 22px rgba(255,198,60,.14);
+}
+
+/* Text */
+.t-for  { font-size: clamp(13px, 3vw, 17px); color: #5a2a0a; letter-spacing: 2px; }
+.t-main { font-size: clamp(19px, 4.5vw, 26px); color: #4a1005; font-weight: bold; letter-spacing: 2px; margin-top: 3px; }
+.t-lang { font-size: clamp(15px, 3.5vw, 20px); color: #5a2010; letter-spacing: 3px; font-style: italic; margin-top: 3px; }
+
+/* Seal */
+.seal {
+  display: inline-flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  width: 74px; height: 74px; border-radius: 50%;
+  background: radial-gradient(circle at 38% 32%, #e53838, #9a0808 66%, #5e0505);
+  border: 2px solid #c8a030;
+  box-shadow:
+    0 0 0 3px rgba(200,168,48,.2),
+    0 5px 16px rgba(139,26,26,.48),
+    inset 0 2px 6px rgba(255,192,85,.14),
+    inset 0 -2px 4px rgba(0,0,0,.18);
+  line-height: 1; cursor: default;
+}
+.seal .s-lb { font-size: 9px; letter-spacing: 2px; color: rgba(255,216,162,.88); margin-top: 5px; }
+.seal .s-n  { font-size: 27px; font-weight: bold; color: #fff; letter-spacing: -1px; }
+
+/* Teacher link */
+.teacher-link {
+  display: block;
+  margin-top: 14px;
+  color: rgba(200,168,75,.62);
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-decoration: none;
+  text-align: center;
+  transition: color .2s;
+}
+.teacher-link:hover { color: rgba(200,168,75,.95); }
+
+/* Responsive */
+@media (max-width: 500px) {
+  .cert   { padding: 38px 26px 34px; }
+  .ribbon { margin-left: -26px; margin-right: -26px; }
+}
+@media (max-width: 360px) {
+  .cert   { padding: 30px 18px 28px; }
+  .ribbon { margin-left: -18px; margin-right: -18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scene, .petal { animation: none; opacity: 1; }
+  .lantern-wrap  { animation: none; }
+}
+
+</style>
+</head>
+<body>
+
+<div class="bg"></div>
+
+<!-- Pagoda silhouette -->
+<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+     style="position:fixed;bottom:0;left:50%;transform:translateX(-50%);z-index:1;
+            opacity:.065;pointer-events:none;width:min(580px,90vw)"
+     viewBox="0 0 580 314" preserveAspectRatio="xMidYMax meet">
+  <rect x="0"   y="296" width="580" height="18" fill="#c8a030"/>
+  <rect x="155" y="264" width="270" height="34" fill="#c8a030"/>
+  <rect x="185" y="232" width="210" height="34" fill="#c8a030"/>
+  <polygon points="155,232 425,232 408,210 172,210" fill="#c8a030"/>
+  <rect x="204" y="198" width="172" height="36" fill="#c8a030"/>
+  <polygon points="177,198 403,198 387,176 193,176" fill="#c8a030"/>
+  <rect x="220" y="165" width="140" height="35" fill="#c8a030"/>
+  <polygon points="197,165 383,165 368,144 212,144" fill="#c8a030"/>
+  <rect x="234" y="133" width="112" height="34" fill="#c8a030"/>
+  <polygon points="213,133 367,133 354,112 226,112" fill="#c8a030"/>
+  <rect x="246" y="102" width="88"  height="33" fill="#c8a030"/>
+  <polygon points="227,102 353,102 341,82 239,82" fill="#c8a030"/>
+  <rect x="258" y="72"  width="64"  height="32" fill="#c8a030"/>
+  <polygon points="290,18 314,72 266,72" fill="#c8a030"/>
+  <line x1="290" y1="3" x2="290" y2="18" stroke="#c8a030" stroke-width="4"/>
+  <circle cx="290" cy="3" r="5" fill="#c8a030"/>
+</svg>
+
+<!-- Scene -->
+<div class="scene">
+
+  <!-- Lanterns -->
+  <div class="lanterns">
+
+    <div class="lantern-wrap">
+      <svg width="52" height="86" viewBox="0 0 52 86" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <radialGradient id="lb1" cx="34%" cy="27%" r="68%">
+            <stop offset="0%"   stop-color="#ffaa42"/>
+            <stop offset="40%"  stop-color="#d42020"/>
+            <stop offset="100%" stop-color="#780505"/>
+          </radialGradient>
+          <radialGradient id="lg1" cx="38%" cy="33%" r="56%">
+            <stop offset="0%"   stop-color="#fff8e0" stop-opacity=".66"/>
+            <stop offset="100%" stop-color="#ff7700" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <line x1="26" y1="0" x2="26" y2="9"  stroke="#c8a030" stroke-width="1.6"/>
+        <ellipse cx="26" cy="12" rx="14" ry="4" fill="#7a0808"/>
+        <rect x="12" y="8" width="28" height="7" fill="#7a0808" rx="2"/>
+        <ellipse cx="26" cy="43" rx="22" ry="30" fill="url(#lb1)"/>
+        <ellipse cx="26" cy="41" rx="19" ry="25" fill="url(#lg1)"/>
+        <ellipse cx="26" cy="29" rx="22" ry="2.5" fill="none" stroke="#660000" stroke-width=".9" opacity=".55"/>
+        <ellipse cx="26" cy="38" rx="22" ry="2.5" fill="none" stroke="#660000" stroke-width=".9" opacity=".55"/>
+        <ellipse cx="26" cy="47" rx="22" ry="2.5" fill="none" stroke="#660000" stroke-width=".9" opacity=".55"/>
+        <ellipse cx="26" cy="56" rx="22" ry="2.5" fill="none" stroke="#660000" stroke-width=".9" opacity=".55"/>
+        <ellipse cx="26" cy="43" rx="22" ry="1.8" fill="none" stroke="#c8a030" stroke-width="1.2" opacity=".42"/>
+        <rect x="12" y="70" width="28" height="7" fill="#7a0808" rx="2"/>
+        <ellipse cx="26" cy="76" rx="14" ry="4" fill="#7a0808"/>
+        <line x1="26" y1="79" x2="26" y2="83" stroke="#c8a030" stroke-width="2"/>
+        <line x1="20" y1="81" x2="19" y2="86" stroke="#c8a030" stroke-width="1.2"/>
+        <line x1="26" y1="83" x2="26" y2="86" stroke="#c8a030" stroke-width="1.3"/>
+        <line x1="32" y1="81" x2="33" y2="86" stroke="#c8a030" stroke-width="1.2"/>
+      </svg>
+    </div>
+
+    <div class="lantern-wrap">
+      <svg width="52" height="86" viewBox="0 0 52 86" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <radialGradient id="lb2" cx="34%" cy="27%" r="68%">
+            <stop offset="0%"   stop-color="#ffaa42"/>
+            <stop offset="40%"  stop-color="#d42020"/>
+            <stop offset="100%" stop-color="#780505"/>
+          </radialGradient>
+          <radialGradient id="lg2" cx="38%" cy="33%" r="56%">
+            <stop offset="0%"   stop-color="#fff8e0" stop-opacity=".66"/>
+            <stop offset="100%" stop-color="#ff7700" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <line x1="26" y1="0" x2="26" y2="9"  stroke="#c8a030" stroke-width="1.6"/>
+        <ellipse cx="26" cy="12" rx="14" ry="4" fill="#7a0808"/>
+        <rect x="12" y="8" width="28" height="7" fill="#7a0808" rx="2"/>
+        <ellipse cx="26" cy="43" rx="22" ry="30" fill="url(#lb2)"/>
+        <ellipse cx="26" cy="41" rx="19" ry="25" fill="url(#lg2)"/>
+        <ellipse cx="26" cy="29" rx="22" ry="2.5" fill="none" stroke="#660000" stroke-width=".9" opacity=".55"/>
+        <ellipse cx="26" cy="38" rx="22" ry="2.5" fill="none" stroke="#660000" stroke-width=".9" opacity=".55"/>
+        <ellipse cx="26" cy="47" rx="22" ry="2.5" fill="none" stroke="#660000" stroke-width=".9" opacity=".55"/>
+        <ellipse cx="26" cy="56" rx="22" ry="2.5" fill="none" stroke="#660000" stroke-width=".9" opacity=".55"/>
+        <ellipse cx="26" cy="43" rx="22" ry="1.8" fill="none" stroke="#c8a030" stroke-width="1.2" opacity=".42"/>
+        <rect x="12" y="70" width="28" height="7" fill="#7a0808" rx="2"/>
+        <ellipse cx="26" cy="76" rx="14" ry="4" fill="#7a0808"/>
+        <line x1="26" y1="79" x2="26" y2="83" stroke="#c8a030" stroke-width="2"/>
+        <line x1="20" y1="81" x2="19" y2="86" stroke="#c8a030" stroke-width="1.2"/>
+        <line x1="26" y1="83" x2="26" y2="86" stroke="#c8a030" stroke-width="1.3"/>
+        <line x1="32" y1="81" x2="33" y2="86" stroke="#c8a030" stroke-width="1.2"/>
+      </svg>
+    </div>
+
+  </div>
+
+  <!-- Certificate -->
+  <div class="cert">
+
+    <div class="wm" aria-hidden="true">中</div>
+
+    <!-- Corner brackets -->
+    <svg class="cnr tl" viewBox="0 0 32 32" aria-hidden="true">
+      <path d="M30 2L2 2L2 30" fill="none" stroke="#8b1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M25 7L7 7L7 25"  fill="none" stroke="#c8a030" stroke-width="1"  stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="7" cy="7" r="2" fill="#c8a030"/>
+    </svg>
+    <svg class="cnr tr" viewBox="0 0 32 32" aria-hidden="true">
+      <path d="M30 2L2 2L2 30" fill="none" stroke="#8b1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M25 7L7 7L7 25"  fill="none" stroke="#c8a030" stroke-width="1"  stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="7" cy="7" r="2" fill="#c8a030"/>
+    </svg>
+    <svg class="cnr bl" viewBox="0 0 32 32" aria-hidden="true">
+      <path d="M30 2L2 2L2 30" fill="none" stroke="#8b1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M25 7L7 7L7 25"  fill="none" stroke="#c8a030" stroke-width="1"  stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="7" cy="7" r="2" fill="#c8a030"/>
+    </svg>
+    <svg class="cnr br" viewBox="0 0 32 32" aria-hidden="true">
+      <path d="M30 2L2 2L2 30" fill="none" stroke="#8b1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M25 7L7 7L7 25"  fill="none" stroke="#c8a030" stroke-width="1"  stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="7" cy="7" r="2" fill="#c8a030"/>
+    </svg>
+
+    <div class="inner">
+
+      <!-- Top ornament -->
+      <div class="orn">
+        <div class="ln"></div>
+        <svg width="20" height="20" viewBox="-10 -10 20 20" aria-hidden="true">
+          <circle cx="0"    cy="-7"   r="3.8" fill="#c41e3a" opacity=".88"/>
+          <circle cx="6.7"  cy="-2.2" r="3.8" fill="#c41e3a" opacity=".88"/>
+          <circle cx="4.1"  cy="5.7"  r="3.8" fill="#c41e3a" opacity=".88"/>
+          <circle cx="-4.1" cy="5.7"  r="3.8" fill="#c41e3a" opacity=".88"/>
+          <circle cx="-6.7" cy="-2.2" r="3.8" fill="#c41e3a" opacity=".88"/>
+          <circle cx="0" cy="0" r="2.5" fill="#ffcc40"/>
+        </svg>
+        <div class="ln"></div>
+      </div>
+
+      <!-- Red ribbon title -->
+      <div class="ribbon" role="heading" aria-level="1">
+        <div class="ribbon-text">Сертификат</div>
+      </div>
+
+      <div style="height:20px"></div>
+
+      <p class="t-for">на</p>
+      <p class="t-main">10 уроков</p>
+      <p class="t-lang">китайского</p>
+
+      <!-- Middle divider with diamond -->
+      <div class="orn" style="margin:22px 0">
+        <div class="ln"></div>
+        <svg width="14" height="14" viewBox="-7 -7 14 14" aria-hidden="true">
+          <rect x="-5" y="-5" width="10" height="10" fill="none" stroke="#c8a030" stroke-width="1.2" transform="rotate(45)"/>
+          <rect x="-2.5" y="-2.5" width="5" height="5" fill="#c8a030" opacity=".7" transform="rotate(45)"/>
+        </svg>
+        <div class="ln"></div>
+      </div>
+
+      <!-- Seal -->
+      <div style="display:flex;justify-content:center">
+        <div class="seal" role="img" aria-label="Сертификат номер 22">
+          <span class="s-lb">№</span>
+          <span class="s-n">22</span>
+        </div>
+      </div>
+
+      <!-- Bottom ornament -->
+      <div class="orn" style="margin-top:22px">
+        <div class="ln"></div>
+        <svg width="20" height="20" viewBox="-10 -10 20 20" aria-hidden="true">
+          <circle cx="0"    cy="-7"   r="3.8" fill="#c41e3a" opacity=".88"/>
+          <circle cx="6.7"  cy="-2.2" r="3.8" fill="#c41e3a" opacity=".88"/>
+          <circle cx="4.1"  cy="5.7"  r="3.8" fill="#c41e3a" opacity=".88"/>
+          <circle cx="-4.1" cy="5.7"  r="3.8" fill="#c41e3a" opacity=".88"/>
+          <circle cx="-6.7" cy="-2.2" r="3.8" fill="#c41e3a" opacity=".88"/>
+          <circle cx="0" cy="0" r="2.5" fill="#ffcc40"/>
+        </svg>
+        <div class="ln"></div>
+      </div>
+
+    </div>
+  </div>
+
+  <a href="https://aliya.cx" class="teacher-link">Преподаватель — Алия Аликулова</a>
+</div>
+
+<script>
+(function () {
+  var cols = [
+    'rgba(255,170,186,.88)',
+    'rgba(255,150,170,.82)',
+    'rgba(255,196,206,.86)',
+    'rgba(246,140,156,.80)',
+    'rgba(255,188,198,.90)'
+  ];
+
+  function mkPetal() {
+    var el = document.createElement('div');
+    el.className = 'petal';
+    var sz  = 5.5 + Math.random() * 8.5;
+    var col = cols[0 | (Math.random() * cols.length)];
+
+    var pts = [0, 72, 144, 216, 288].map(function (a) {
+      var r  = a * Math.PI / 180;
+      var cx = +(Math.sin(r) * sz * .55).toFixed(2);
+      var cy = +(-Math.cos(r) * sz * .55).toFixed(2);
+      return '<ellipse cx="' + cx + '" cy="' + cy + '" rx="' + (sz * .36).toFixed(1) +
+             '" ry="' + (sz * .58).toFixed(1) +
+             '" transform="rotate(' + a + ',' + cx + ',' + cy + ')" fill="' + col + '"/>';
+    }).join('');
+
+    el.style.cssText =
+      'left:'   + (Math.random() * 102) + '%;' +
+      'animation-duration:'  + (11 + Math.random() * 17) + 's;' +
+      'animation-delay:'     + (-(Math.random() * 28))   + 's;';
+
+    el.innerHTML =
+      '<svg viewBox="-' + sz + ' -' + sz + ' ' + (sz * 2) + ' ' + (sz * 2) +
+      '" width="' + (sz * 2) + '" height="' + (sz * 2) +
+      '" xmlns="http://www.w3.org/2000/svg">' +
+      pts +
+      '<circle r="' + (sz * .21).toFixed(1) + '" fill="rgba(255,214,88,.9)"/>' +
+      '</svg>';
+
+    return el;
+  }
+
+  var frag = document.createDocumentFragment();
+  for (var i = 0; i < 22; i++) frag.appendChild(mkPetal());
+  document.body.appendChild(frag);
+})();
+</script>
+
+</body>
+</html>
